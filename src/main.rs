@@ -8,7 +8,7 @@ use tokio::sync::OnceCell;
 use tonic::transport::Server;
 
 static DB_POOL: OnceCell<sqlx::Pool<sqlx::Postgres>> = OnceCell::const_new();
-static REDIS_CONN: OnceCell<redis::aio::ConnectionManager> = OnceCell::const_new();
+static REDIS_CONN: OnceCell<redis::aio::MultiplexedConnection> = OnceCell::const_new();
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

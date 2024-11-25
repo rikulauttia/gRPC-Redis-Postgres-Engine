@@ -1,21 +1,19 @@
-use super::service::messaging_service_server::{MessagingService, MessagingServiceServer};
+use super::service::messaging_service_server::MessagingService;
 use super::service::{MessageRequest, MessageResponse};
 use tonic::{Request, Response, Status};
-use crate::db::models::User;
-use crate::cache::get_redis_conn;
-use crate::db::get_db_pool;
-use redis::aio::ConnectionManager;
+// Remove unused imports
+use redis::aio::MultiplexedConnection;
 use sqlx::Pool;
 use sqlx::Postgres;
 
 #[derive(Clone)]
 pub struct MyMessagingService {
     db_pool: Pool<Postgres>,
-    redis_conn: ConnectionManager,
+    redis_conn: MultiplexedConnection,
 }
 
 impl MyMessagingService {
-    pub fn new(db_pool: Pool<Postgres>, redis_conn: ConnectionManager) -> Self {
+    pub fn new(db_pool: Pool<Postgres>, redis_conn: MultiplexedConnection) -> Self {
         Self { db_pool, redis_conn }
     }
 }
