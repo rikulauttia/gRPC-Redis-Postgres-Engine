@@ -12,17 +12,14 @@ static REDIS_CONN: OnceCell<redis::aio::ConnectionManager> = OnceCell::const_new
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Initialize tracing
     tracing_subscriber::fmt::init();
 
-    // Initialize database and cache connections
     let db_pool = db::db::get_db_pool().await;
     let redis_conn = cache::get_redis_conn().await;
 
     DB_POOL.set(db_pool.clone()).unwrap();
     REDIS_CONN.set(redis_conn.clone()).unwrap();
 
-    // Create gRPC server
     let addr = "[::1]:50051".parse().unwrap();
     let messaging_service = MyMessagingService::new(db_pool, redis_conn);
 
