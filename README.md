@@ -31,7 +31,7 @@ brew install postgresql redis protobuf
 
 ```bash
 git clone https://github.com/rikulauttia/gRPC-Redis-Postgres-Engine.git
-cd high_performance_backend
+cd gRPC-Redis-Postgres-Engine
 ```
 
 3. Set up environment variables:
