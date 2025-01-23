@@ -30,7 +30,7 @@ brew install postgresql redis protobuf
 2. Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/rikulauttia/gRPC-Redis-Postgres-Engine.git
 cd high_performance_backend
 ```
 
